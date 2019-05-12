@@ -25,11 +25,11 @@ namespace JokesApi.Data
             var result = JsonConvert.DeserializeObject<IEnumerable<Joke>>(json).First();
             AddJokeToDB(result);
             //returning specific joke for test purposes
-            //using (var x = new JokeContext(_connectionString))
-            //{
-            //    return x.Jokes.FirstOrDefault(j => j.Id == 2);
-            //}
-                return result;
+            using (var x = new JokeContext(_connectionString))
+            {
+                return x.Jokes.FirstOrDefault(j => j.Id == 2);
+            }
+            return result;
         }
 
         private void AddJokeToDB(Joke joke)
@@ -89,11 +89,11 @@ namespace JokesApi.Data
             }
         }
 
-        public bool AlreadyLiked(Like like)
+        public bool AlreadyLiked(Like like, bool liked)
         {
             using (var ctx = new JokeContext(_connectionString))
             {
-                return ctx.Likes.Any(l => l.UserId == like.UserId && l.JokeId == like.JokeId && l.Liked == true);
+                return ctx.Likes.Any(l => l.UserId == like.UserId && l.JokeId == like.JokeId && l.Liked == liked);
             }
         }
 

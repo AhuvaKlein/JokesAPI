@@ -33,8 +33,8 @@ namespace JokesApi.Web.Controllers
             };
             if (vm.Verified)
             {
-                vm.AlreadyLiked = _repo.AlreadyLiked(new Like { JokeId = vm.Joke.Id, UserId = vm.User.Id });
-                vm.AlreadyDisliked = _repo.AlreadyDisliked(new Like { JokeId = vm.Joke.Id, UserId = vm.User.Id });
+                vm.AlreadyLiked = _repo.AlreadyLiked(new Like { JokeId = vm.Joke.Id, UserId = vm.User.Id }, true);
+                vm.AlreadyDisliked = _repo.AlreadyLiked(new Like { JokeId = vm.Joke.Id, UserId = vm.User.Id }, false);
                 vm.CanStillLike = _repo.CanStillLike(new Like { JokeId = vm.Joke.Id, UserId = vm.User.Id });
             }
 
