@@ -1,0 +1,21 @@
+﻿@model IEnumerable<JokesApi.Data.Joke>
+
+<div class="row">
+    <table class="table table-bordered">
+        <tr>
+            <th>Joke</th>
+            <th>Answer</th>
+            <th>Likes</th>
+            <th>Dislikes</th>
+        </tr>
+        @foreach (var j in Model)
+        {
+            <tr>
+                <td>@j.Setup</td>
+                <td>@j.Punchline</td>
+                <td>@j.Likes.Where(l => l.Liked == true).Count()</td>
+                <td>@j.Likes.Where(l => l.Liked == false).Count()</td>
+            </tr>
+        }
+    </table>
+</div>

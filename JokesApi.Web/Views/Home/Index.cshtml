@@ -1,0 +1,27 @@
+﻿@model IndexViewModel
+
+<div class="row">
+    <h2 class="well">
+        @Model.Joke.Setup
+    </h2>
+    <br />
+    <h4 class="well">
+        @Model.Joke.Punchline
+    </h4>
+    <br />
+
+    @if (Model.Verified)
+    {
+        <div>
+            <input type="hidden" id="like-info" data-userid=@Model.User.Id data-jokeid=@Model.Joke.Id />
+            <button class="btn btn-danger" @(Model.AlreadyLiked || !Model.CanStillLike ? "disabled": "") id="like-btn">Like</button>
+            <button class="btn btn-success" @(Model.AlreadyDisliked || !Model.CanStillLike ? "disabled" : "") id="dislike-btn">Dislike</button>
+        </div>
+    }
+</div>
+
+
+
+@section scripts{
+    <script src="~/js/like.js"></script>
+}
