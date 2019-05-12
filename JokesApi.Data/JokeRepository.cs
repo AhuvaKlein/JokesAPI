@@ -25,10 +25,10 @@ namespace JokesApi.Data
             var result = JsonConvert.DeserializeObject<IEnumerable<Joke>>(json).First();
             AddJokeToDB(result);
             //returning specific joke for test purposes
-            using (var x = new JokeContext(_connectionString))
-            {
-                return x.Jokes.FirstOrDefault(j => j.Id == 2);
-            }
+            //using (var x = new JokeContext(_connectionString))
+            //{
+            //    return x.Jokes.FirstOrDefault(j => j.Id == 2);
+            //}
             return result;
         }
 
@@ -97,13 +97,13 @@ namespace JokesApi.Data
             }
         }
 
-        public bool AlreadyDisliked(Like like)
-        {
-            using (var ctx = new JokeContext(_connectionString))
-            {
-                return ctx.Likes.Any(l => l.UserId == like.UserId && l.JokeId == like.JokeId && l.Liked == false);
-            }
-        }
+        //public bool AlreadyDisliked(Like like)
+        //{
+        //    using (var ctx = new JokeContext(_connectionString))
+        //    {
+        //        return ctx.Likes.Any(l => l.UserId == like.UserId && l.JokeId == like.JokeId && l.Liked == false);
+        //    }
+        //}
 
         public bool CanStillLike(Like like)
         {
